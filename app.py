@@ -2,9 +2,10 @@ from flask import Flask, render_template, request, redirect, url_for, flash, jso
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import random
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your-secret-key-here'
+app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', 'dev-key-for-local')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///white_elephant.db'
 db = SQLAlchemy(app)
 
